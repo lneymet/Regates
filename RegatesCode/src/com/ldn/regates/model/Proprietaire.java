@@ -2,14 +2,14 @@ package com.ldn.regates.model;
 
 import java.util.Scanner;
 
-public class Proprietaire {
+public class Proprietaire extends Personne {
 
-	private String nomProp;
+	private String telProp;
 	private String adresse;
 	
-	public Proprietaire(String nomProp, String adresse) {
-		super();
-		this.nomProp = nomProp;
+	public Proprietaire(String nomPers, String prenPers, String eMail, String telProp, String adresse) {
+		super(nomPers, prenPers, eMail);
+		this.telProp = telProp;
 		this.adresse = adresse;
 	}
 	
@@ -17,7 +17,7 @@ public class Proprietaire {
 		final String telProp;
 		
 		Scanner telKeyb = new Scanner(System.in);
-		System.out.println("Saissisez votre numéro de téléphone:");
+		System.out.println("Saisissez votre numéro de téléphone:");
 		telProp = telKeyb.nextLine();
 //		nomKeyb.close();
 		System.out.println(telProp);
@@ -28,7 +28,7 @@ public class Proprietaire {
 		final String adresse;
 		
 		Scanner nomKeyb = new Scanner(System.in);
-		System.out.println("Saissisez votre adresse:");
+		System.out.println("Saisissez votre adresse:");
 		adresse = nomKeyb.nextLine();
 //		nomKeyb.close();
 		System.out.println(adresse);
@@ -36,10 +36,10 @@ public class Proprietaire {
 	}
 	
 	public String getNomProp() {
-		return nomProp;
+		return telProp;
 	}
 	public void setNomProp(String nomProp) {
-		this.nomProp = nomProp;
+		this.telProp = nomProp;
 	}
 	public String getAdresse() {
 		return adresse;
