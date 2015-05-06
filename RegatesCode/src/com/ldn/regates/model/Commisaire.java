@@ -2,6 +2,7 @@ package com.ldn.regates.model;
 
 import java.util.Scanner;
 
+
 public class Commisaire extends Personne {
 	private String comite;
 

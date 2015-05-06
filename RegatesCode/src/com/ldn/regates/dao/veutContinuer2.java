@@ -2,6 +2,7 @@ package com.ldn.regates.dao;
 
 import java.util.Scanner;
 
+
 public class veutContinuer2 
 {
 

@@ -4,13 +4,24 @@ import java.util.Scanner;
 
 public class Proprietaire extends Personne {
 
+	private int idProp;
 	private String telProp;
 	private String adresse;
+	private String nomClub;
 	
-	public Proprietaire(String nomPers, String prenPers, String eMail, String telProp, String adresse) {
+	public Proprietaire(int idProp, String nomPers, String prenPers, String eMail, String telProp, String adresse, String nomClub) {
 		super(nomPers, prenPers, eMail);
+		this.idProp = idProp;
 		this.telProp = telProp;
 		this.adresse = adresse;
+		this.nomClub = nomClub;
+	}
+	
+	public static int idProp() {
+		final int idProp = 0;
+		
+		
+		return idProp;
 	}
 	
 	public static String telProprio() {
@@ -35,10 +46,19 @@ public class Proprietaire extends Personne {
 		return adresse;
 	}
 	
-	public String getNomProp() {
+	
+	public int getIdProp() {
+		return idProp;
+	}
+
+	public void setIdProp(int idProp) {
+		this.idProp = idProp;
+	}
+
+	public String getTelProp() {
 		return telProp;
 	}
-	public void setNomProp(String nomProp) {
+	public void setTelProp(String nomProp) {
 		this.telProp = nomProp;
 	}
 	public String getAdresse() {
@@ -48,4 +68,12 @@ public class Proprietaire extends Personne {
 		this.adresse = adresse;
 	}
 
+	public String getNomClub() {
+		return nomClub;
+	}
+
+	public void setNomClub(String nomClub) {
+		this.nomClub = nomClub;
+	}
+	
 }

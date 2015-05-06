@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.ldn.regates.utlis.Controls;
 
+
 public class Licencie extends Personne {
 	
 
