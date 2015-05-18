@@ -1,6 +1,6 @@
 package com.ldn.regates.model;
 
-import java.util.Scanner;
+
 
 public class Proprietaire extends Personne {
 
@@ -23,30 +23,7 @@ public class Proprietaire extends Personne {
 		
 		return idProp;
 	}
-	
-	public static String telProprio() {
-		final String telProp;
 		
-		Scanner telKeyb = new Scanner(System.in);
-		System.out.println("Saisissez votre numéro de téléphone:");
-		telProp = telKeyb.nextLine();
-//		nomKeyb.close();
-		System.out.println(telProp);
-		return telProp;
-	}
-
-	public static String adresseProp() {
-		final String adresse;
-		
-		Scanner nomKeyb = new Scanner(System.in);
-		System.out.println("Saisissez votre adresse:");
-		adresse = nomKeyb.nextLine();
-//		nomKeyb.close();
-		System.out.println(adresse);
-		return adresse;
-	}
-	
-	
 	public int getIdProp() {
 		return idProp;
 	}

@@ -6,9 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.ldn.regates.model.Proprietaire;
+import com.ldn.regates.ui.UIvoilier;
 
 
 
@@ -34,25 +38,12 @@ public class ProprietaireDAO {
 	        while (rs.next()){
 	        	
 	        	int propid = rs.getInt("id_proprio");
-//	        	System.out.println("ID propriétaire: "+propid);
-	        	
 	        	String propnom = rs.getString("nom_proprio");
-//	        	System.out.println("Nom Proprietaire: "+propnom);
-	        	
 	        	String proppre = rs.getString("prenom_proprio");
-//	        	System.out.println("Prénom propriétaire: "+proppre);
-	        	
 	        	String propmail = rs.getString("email_proprio");
-//	        	System.out.println("eMail propriétaire: "+propmail);
-	        	
 	        	String proptel = rs.getString("tel_proprio");
-//	        	System.out.println("Téléphone propriétaire: "+proptel);
-	        	
 	        	String propcoor = rs.getString("coordonnees_proprio");
-//	        	System.out.println("Coordonnées propriétaire: "+propcoor);
-	        	
 	        	String propclub = rs.getString("nom_club");
-//	        	System.out.println("Club propriétaire: "+propclub);
 	        		        	
 	        	Proprietaire prop = new Proprietaire(propid, propnom, proppre, propmail, proptel, propcoor, propclub);
 	        	ps.add(prop);
@@ -94,7 +85,8 @@ public class ProprietaireDAO {
 		 
 	 }
 	 
-	 public static ProprietaireDAO getProprietaire(int idprop){
+	 @SuppressWarnings("null")
+	public static ProprietaireDAO getProprietaire(int idprop){
 		 
 		 List<ProprietaireDAO> ps = new ArrayList<>();
 		 
@@ -110,25 +102,13 @@ public class ProprietaireDAO {
 		        
 		        while (rs.next()){
 		        	int propid = rs.getInt("id_proprio");
-//		        	System.out.println("ID propriétaire: "+propid);
-		        	
 		        	String propnom = rs.getString("nom_proprio");
-//		        	System.out.println("Nom Proprietaire: "+propnom);
-		        	
 		        	String proppre = rs.getString("prenom_proprio");
-//		        	System.out.println("Prénom propriétaire: "+proppre);
-		        	
 		        	String propmail = rs.getString("email_proprio");
-//		        	System.out.println("eMail propriétaire: "+propmail);
-		        	
 		        	String proptel = rs.getString("tel_proprio");
-//		        	System.out.println("Téléphone propriétaire: "+proptel);
-		        	
 		        	String propcoor = rs.getString("coordonnees_proprio");
-//		        	System.out.println("Coordonnées propriétaire: "+propcoor);
-		        	
 		        	String propclub = rs.getString("nom_club");
-//		        	System.out.println("Club propriétaire: "+propclub);
+
 		        		        	
 		        	ProprietaireDAO prop = new ProprietaireDAO(propid, propnom, proppre, propmail, proptel, propcoor, propclub);
 		        	ps.add(prop);
@@ -141,14 +121,7 @@ public class ProprietaireDAO {
 		        	p.setTelProp(proptel);
 		        	p.setAdrProp(propcoor);
 		        	p.setNomClub(propclub);
-		        	
-//		        	p = new Proprietaire(rs.getString("nom_proprio"));
-//		        	p.setNum(rs.getInt("pays.num"));
-//		        	p.setNbHabitants(rs.getInt("nbhabitant"));
-//		        	
-//		        	//build capitale if set
-//		        	p.setCapitale(getCapitale(rs));       	
-		        	
+		        			        	
 		        }
 		        rs.close();
 				
@@ -159,7 +132,7 @@ public class ProprietaireDAO {
 			
 			return p;
 	 }
-	///////////////////////////////// 
+
 	 
 	 public static int getID(){
 			int autoinc = 0;
@@ -185,35 +158,102 @@ public class ProprietaireDAO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			System.out.println("Auto increment: "+autoinc);
 			return autoinc;
+	 }
+	
+	 
+	 public static int getIDpropBox(String nomprop){
+			int propid = 0;
+			Connection c = Connect.cConnect();
+			
+			  Statement stm;
+			try {
+				stm = c.createStatement();
+				
+				String sql = "select id_proprio, nom_proprio from proprietaire where nom_proprio="+"'"+nomprop+"'";
+				ResultSet rs = stm.executeQuery(sql);
+			
+		        while (rs.next()){
+				    // ... get column values from this record
+					int propidsql = rs.getInt("id_proprio");
+					propid = propidsql;
+//					System.out.println(propid);
+		        }
+				stm.close();
+			} 
+
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return propid;
 	 }
 	 
 	 
-	 //////////////////////////////
-//	 public static int getPropID() {
-//		 int
-//		 
-//		 Connection c = Connect.cConnect();
-//		 PreparedStatement stm=null;
-//		 
-//			try {
-//				String sql = "select * from proprietaire order by id_proprio desc limit 1;";
-//		        ResultSet rs;
-//				rs = stm.executeQuery(sql);
-//	        	propid = rs.getInt("id_proprio");
-//		        rs.close();
-//			} 
-//			catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//	        	
-//
-////	        	System.out.println("ID propriétaire: "+propid);		 
-//				return propid;
-//	 }
+		public static List<String> showProp(){
+			
+			 List<String> ps = new ArrayList<>();
+			 Connection c = Connect.cConnect();
+
+	       // test avec select
+	       Statement stm;
+			try {
+				stm = c.createStatement();
+				
+				String sql = "select * from proprietaire";
+		        ResultSet rs = stm.executeQuery(sql);
+
+		      
+		        
+		        while (rs.next()){
+
+		        	
+		        	String propnom = rs.getString("nom_proprio");
+		        	String proppre = rs.getString("prenom_proprio");
+		        	
+		            List<String> strings = new LinkedList<>();
+		            strings.add(proppre);
+		            strings.add(propnom);
+		            String message = String.join(" ", strings);
+		        		        	
+		        	ps.add(message);
+		        }
+		        rs.close();
+				
+				
+			} catch (SQLException e) {
+				throw new RuntimeException();
+			}
+			
+			return ps;
+			 
+		 }
+		
+		
+		 public static void rempliProp(int numprop)
+		 {
+		  Connection c = Connect.cConnect();
+		  Statement stmt;
+		  String sql = "select Nom_proprio from proprietaire";
+		  
+		  try 
+		  { 
+		   ResultSet rs = null ;  
+		   stmt = c.createStatement(); 
+		   rs = stmt.executeQuery(sql); 
+
+		   while (rs.next()) 
+		   { 
+		    String nomserie = rs.getString("Nom_proprio");
+		    UIvoilier.cBoxProp.addItem(nomserie); 
+		   } 
+		  }
+		  catch (Exception ex) 
+		  { 
+		   JOptionPane.showMessageDialog(null, "erreur");
+		  }
+		 }
+
 	
 	int idProp;
 	String nomProp;

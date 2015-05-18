@@ -1,6 +1,6 @@
 package com.ldn.regates.model;
 
-import java.util.Scanner;
+
 
 
 public class Commisaire extends Personne {
@@ -11,18 +11,6 @@ public class Commisaire extends Personne {
 		this.comite = comite;
 	}
 	
-	public static String comiteNom() {
-		String comite;
-		
-		Scanner comiKeyb = new Scanner(System.in);
-		System.out.println("Saisissez le nom de votre comité:");
-		comite = comiKeyb.nextLine();
-//		persoInfo.add(comite);
-		System.out.println(comite);
-
-		
-		return comite;		
-	}
 
 	public String getComite() {
 		return comite;

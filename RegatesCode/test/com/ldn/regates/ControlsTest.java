@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.ldn.regates.utlis.Controls;
+import com.ldn.regates.utils.Controls;
 
 public class ControlsTest {
 

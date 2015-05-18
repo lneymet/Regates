@@ -1,28 +1,27 @@
 package com.ldn.regates.model;
 
 
+
+
+
+
 public class Voilier {
 	private int idVoili;
 	private int idProp;
 	private int idClasse;
 	private String nomVoili;
 	private int numVoile;
-	private String serie;
-	
-	
-	
+
 	
 	public Voilier(int idVoili, int idProp, int idClasse, String nomVoili,
-			int numVoile, String serie) {
+			int numVoile) {
 		super();
 		this.idVoili = idVoili;
 		this.idProp = idProp;
 		this.idClasse = idClasse;
 		this.nomVoili = nomVoili;
 		this.numVoile = numVoile;
-		this.serie = serie;
 	}
-
 
 	public int getIdVoili() {
 		return idVoili;
@@ -72,17 +71,4 @@ public class Voilier {
 	public void setNumVoile(int numVoile) {
 		this.numVoile = numVoile;
 	}
-
-
-	public String getSerie() {
-		return serie;
-	}
-
-
-	public void setSerie(String serie) {
-		this.serie = serie;
-	}
-
-	
-	
 }
